@@ -1,6 +1,48 @@
 const personModel = require('../models/personModel');
 const cloudinary = require('../utils/cloudinary')
 const fs = require('fs')
+const {validatePerson} = require('../middleware/personValidate')
+
+
+// // Create a Profile
+// const createProfile = async (req, res)=>{
+//     try {
+//         const { personName, personPhone } = req.body;
+//         const {error} = await validatePerson(req.body);
+//         if (error) {
+//             res.status(409).json({
+//                 message: error.details[0].message
+//             })
+//         } else {
+//         const result = await cloudinary.uploader.upload(req.file.path);
+//         const newPerson = new personModel({
+//             personName,
+//             personPhone,
+//             personProfile: result.secure_url
+//         })
+
+//         await fs.unlinkSync(req.file.path)
+//         const savedPerson = await newPerson.save();
+//         if(savedPerson){
+//             res.status(201).json({
+//                 message: 'Person created successfully',
+//                 data: savedPerson
+//             })
+//         } else {
+//             res.status(400).json({
+//                 message: 'Unable to create person'
+//             })
+//         }
+//         }
+//     } catch (error) {
+//         const err = error.message;
+//         res.status(500).json({
+//             message: `Nonsense ${err}`
+//         })
+//     }
+// }
+
+
 
 
 // Create a Profile
@@ -33,6 +75,11 @@ const createProfile = async (req, res)=>{
         })
     }
 }
+
+
+
+
+
 
 const getPersons = async (req, res, next) => {
     try {
